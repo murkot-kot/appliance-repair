@@ -61,7 +61,7 @@
     .modal img {
       max-width: 90%;
       max-height: 90%;
-    }$1
+    }
 </head>
 <body>
   <header>
@@ -79,7 +79,7 @@
 
   <div id="imageModal" class="modal" onclick="this.style.display='none'">
     <img id="modalImage" src="" alt="Full Size Image">
-  </div>$1
+  </div>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -162,6 +162,6 @@
         modalImg.src = e.target.src;
         modal.style.display = 'flex';
       }
-    });$1
+    });
 </body>
 </html>
