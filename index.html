@@ -26,14 +26,24 @@
       color: white;
       text-decoration: none;
       margin: 0 1em;
+      cursor: pointer;
     }
     nav a:hover {
       text-decoration: underline;
     }
     section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      display: none;
       padding: 2em;
       max-width: 1000px;
       margin: auto;
+    }
+    section.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
     }
     h2 {
       color: #333;
@@ -77,6 +87,7 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease;
       object-fit: cover;
+      loading: lazy;
     }
     .gallery img:hover {
       transform: scale(1.05);
@@ -90,13 +101,14 @@
   </header>
 
   <nav>
-    <a href="#appliance">Appliance</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
+    <a onclick="showSection('appliance')">Appliance</a>
+    <a onclick="showSection('gallery')">Gallery</a>
+    <a onclick="showSection('about')">About</a>
+    <a onclick="showSection('contact')">Contact</a>
+    <a href="gallery.html">Open Gallery Page</a>
   </nav>
 
-  <section id="appliance">
+  <section id="appliance" class="active">
     <h2>Appliance</h2>
     <ul>
       <li>Washing machine repair</li>
@@ -138,7 +150,13 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  const imageNames = [
+  function showSection(id) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    const target = document.getElementById(id);
+    setTimeout(() => target.classList.add('active'), 10);
+  }
+
+  const customNames = [
     "PXL_20250407_185426106.MP.jpg",
     "PXL_20250417_022335367.MP.jpg",
     "PXL_20250418_173009155.MP.jpg",
@@ -200,12 +218,12 @@
 
   const baseUrl = "https://murkot-kot.github.io/appliance-repair/images/";
   const gallery = document.getElementById("gallery-container");
-
   gallery.innerHTML = "";
-  imageNames.forEach(name => {
+  customNames.forEach(name => {
     const img = document.createElement("img");
     img.src = baseUrl + name;
     img.alt = name;
+    img.loading = "lazy";
     gallery.appendChild(img);
   });
 </script>
