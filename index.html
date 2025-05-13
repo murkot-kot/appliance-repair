@@ -26,24 +26,14 @@
       color: white;
       text-decoration: none;
       margin: 0 1em;
-      cursor: pointer;
     }
     nav a:hover {
       text-decoration: underline;
     }
     section {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-      display: none;
       padding: 2em;
-      max-width: 1000px;
+      max-width: 800px;
       margin: auto;
-    }
-    section.active {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
     }
     h2 {
       color: #333;
@@ -74,6 +64,17 @@
       border-radius: 4px;
       cursor: pointer;
     }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1em;
+      margin-top: 1em;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
   </style>
 </head>
 <body>
@@ -83,13 +84,13 @@
   </header>
 
   <nav>
-    <a onclick="showSection('appliance')">Appliance</a>
-    <a href="gallery.html">Gallery</a>
-    <a onclick="showSection('about')">About</a>
-    <a onclick="showSection('contact')">Contact</a>
+    <a href="#appliance">Appliance</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
   </nav>
 
-  <section id="appliance" class="active">
+  <section id="appliance">
     <h2>Appliance</h2>
     <ul>
       <li>Washing machine repair</li>
@@ -98,9 +99,11 @@
       <li>Oven and cooktop repair</li>
       <li>Refrigerator repair</li>
     </ul>
-    <h3>Leave a request</h3>
-    <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSdjQDe8AQtYtHNgeI-M2AxNXZNWRjBVbZrnICxVf3-QPr9Jpw/viewform" target="_blank">Open the request form in a new tab</a></p>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdjQDe8AQtYtHNgeI-M2AxNXZNWRjBVbZrnICxVf3-QPr9Jpw/viewform?embedded=true" width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+  </section>
+
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery">Загрузка...</div>
   </section>
 
   <section id="about">
@@ -117,19 +120,35 @@
       <a href="viber://chat?number=%2B12068806939" target="_blank" class="viber">Viber</a>
       <a href="https://wa.me/12068806939" target="_blank" class="whatsapp">WhatsApp</a>
     </div>
+    <h3>Leave a request</h3>
+    <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSdjQDe8AQtYtHNgeI-M2AxNXZNWRjBVbZrnICxVf3-QPr9Jpw/viewform" target="_blank">Open the request form in a new tab</a></p>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdjQDe8AQtYtHNgeI-M2AxNXZNWRjBVbZrnICxVf3-QPr9Jpw/viewform?embedded=true" width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
   </section>
 
   <footer>
     &copy; <span id="year"></span> Appliance Repair
   </footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    function showSection(id) {
-      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-      const target = document.getElementById(id);
-      if (target) setTimeout(() => target.classList.add('active'), 10);
-    }
-  </script>
+ <script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  fetch("https://script.google.com/macros/s/AKfycbwKP9TWYE6bLYnYawMFx6aYZed9DjYLNPJVUqGScJlTqktrodXQq_ARSf5B5fbmtGJ9/exec")
+    .then(res => res.json())
+    .then(images => {
+      const gallery = document.querySelector(".gallery");
+      gallery.innerHTML = "";
+      images.forEach(url => {
+        const img = document.createElement("img");
+        img.src = url.replace("/uc?export=view&id=", "/thumbnail?id=");
+        img.alt = "Gallery image";
+        gallery.appendChild(img);
+      });
+    })
+    .catch(() => {
+      document.querySelector(".gallery").textContent = "Error loading gallery.";
+    });
+</script>
+
+
 </body>
 </html>
