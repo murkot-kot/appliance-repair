@@ -74,7 +74,38 @@
       border-radius: 4px;
       cursor: pointer;
     }
-  </style>
+  
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1em;
+      margin-top: 1em;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+    }$1
 </head>
 <body>
   <header>
@@ -87,7 +118,19 @@
     <a href="gallery.html">Gallery</a>
     <a onclick="showSection('about')">About</a>
     <a onclick="showSection('contact')">Contact</a>
-  </nav>
+  $1
+
+  <section id="gallery" class="active">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <img src="images/PXL_20250407_185426106.MP.jpg" alt="Gallery image 1">
+      <img src="images/PXL_20250417_022335367.MP.jpg" alt="Gallery image 2">
+      <img src="images/PXL_20250418_173009155.MP.jpg" alt="Gallery image 3">
+      <img src="images/PXL_20250418_173014060.MP.jpg" alt="Gallery image 4">
+      <img src="images/PXL_20250418_173507638.MP.jpg" alt="Gallery image 5">
+      <img src="images/PXL_20250418_174216662.MP.jpg" alt="Gallery image 6">
+    </div>
+  </section>
 
   <section id="appliance" class="active">
     <h2>Appliance</h2>
@@ -99,9 +142,7 @@
       <li>Refrigerator repair</li>
     </ul>
 
-    <h3>Leave a request</h3>
-    <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSdjQDe8AQtYtHNgeI-M2AxNXZNWRjBVbZrnICxVf3-QPr9Jpw/viewform" target="_blank">Open the request form in a new tab</a></p>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdjQDe8AQtYtHNgeI-M2AxNXZNWRjBVbZrnICxVf3-QPr9Jpw/viewform?embedded=true" width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    
 
     
   </section>
@@ -127,5 +168,28 @@
       if (target) setTimeout(() => target.classList.add('active'), 10);
     }
   </script>
-</body>
+  <div id="imageModal" class="modal" onclick="this.style.display='none'">
+    <img id="modalImage" src="" alt="Full Size Image">
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      const target = document.getElementById(id);
+      if (target) setTimeout(() => target.classList.add('active'), 10);
+    }
+
+    // Optional: If you embed gallery directly in this file
+    document.addEventListener('click', function(e) {
+      if (e.target.matches('.gallery img')) {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        modalImg.src = e.target.src;
+        modal.style.display = 'flex';
+      }
+    });
+  </script>
+$1
 </html>
