@@ -45,7 +45,23 @@
     a.back:hover {
       text-decoration: underline;
     }
-  </style>
+  
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+    }$1
 </head>
 <body>
   <header>
@@ -59,7 +75,11 @@
 
   <footer>
     &copy; <span id="year"></span> Appliance Repair
-  </footer>
+  
+
+  <div id="imageModal" class="modal" onclick="this.style.display='none'">
+    <img id="modalImage" src="" alt="Full Size Image">
+  </div>$1
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -134,6 +154,14 @@
       img.loading = "lazy";
       gallery.appendChild(img);
     });
-  </script>
+  
+    document.addEventListener('click', function(e) {
+      if (e.target.matches('.gallery img')) {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        modalImg.src = e.target.src;
+        modal.style.display = 'flex';
+      }
+    });$1
 </body>
 </html>
