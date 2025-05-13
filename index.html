@@ -32,7 +32,7 @@
     }
     section {
       padding: 2em;
-      max-width: 800px;
+      max-width: 1000px;
       margin: auto;
     }
     h2 {
@@ -66,15 +66,17 @@
     }
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1em;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5em;
       margin-top: 1em;
     }
     .gallery img {
       width: 100%;
+      height: auto;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease;
+      object-fit: cover;
     }
     .gallery img:hover {
       transform: scale(1.05);
@@ -137,12 +139,63 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 
   const imageNames = [
-    "PXL_20250425_152914599.jpg",
-    "PXL_20250425_152915600.jpg",
-    "PXL_20250425_152916601.jpg",
-    "PXL_20250425_152917602.jpg",
-    "PXL_20250425_152918603.jpg",
-    "PXL_20250425_152919604.jpg"
+    "PXL_20250407_185426106.MP.jpg",
+    "PXL_20250417_022335367.MP.jpg",
+    "PXL_20250418_173009155.MP.jpg",
+    "PXL_20250418_173014060.MP.jpg",
+    "PXL_20250418_173507638.MP.jpg",
+    "PXL_20250418_174216662.MP.jpg",
+    "PXL_20250421_171814038.MP.jpg",
+    "PXL_20250421_174245694.MP.jpg",
+    "PXL_20250421_211055794.MP.jpg",
+    "PXL_20250421_212207215.MP.jpg",
+    "PXL_20250421_221704096.MP.jpg",
+    "PXL_20250422_163047969.MP.jpg",
+    "PXL_20250423_161653029.MP.jpg",
+    "PXL_20250424_015847466.MP.jpg",
+    "PXL_20250424_020043393.MP.jpg",
+    "PXL_20250425_152228327.jpg",
+    "PXL_20250425_152244795.MP.jpg",
+    "PXL_20250425_160051919.MP.jpg",
+    "PXL_20250425_165109722.jpg",
+    "PXL_20250425_171010706.jpg",
+    "PXL_20250425_173844402.jpg",
+    "PXL_20250425_230943374.MP.jpg",
+    "PXL_20250428_163558630.MP.jpg",
+    "PXL_20250428_183747281.MP.jpg",
+    "PXL_20250428_183751454.MP.jpg",
+    "PXL_20250428_234958185.MP.jpg",
+    "PXL_20250428_235610339.MP.jpg",
+    "PXL_20250428_235743048.MP.jpg",
+    "PXL_20250429_200822460.MP.jpg",
+    "PXL_20250429_204021804.MP.jpg",
+    "PXL_20250429_204621323.MP.jpg",
+    "PXL_20250429_205316668.MP.jpg",
+    "PXL_20250429_223623657.MP.jpg",
+    "PXL_20250430_174026882.MP.jpg",
+    "PXL_20250430_174032540.MP.jpg",
+    "PXL_20250430_202931664.jpg",
+    "PXL_20250501_152507317.jpg",
+    "PXL_20250501_165752172.MP.jpg",
+    "PXL_20250501_170715728.MP.jpg",
+    "PXL_20250501_193533326.MP.jpg",
+    "PXL_20250505_153830605.MP.jpg",
+    "PXL_20250505_154307765.MP.jpg",
+    "PXL_20250506_011707302.MP.jpg",
+    "PXL_20250506_012039551.MP.jpg",
+    "PXL_20250506_012728996.MP.jpg",
+    "PXL_20250506_015544213.MP.jpg",
+    "PXL_20250506_034716024.MP.jpg",
+    "PXL_20250506_153317245.MP.jpg",
+    "PXL_20250506_153320481.MP.jpg",
+    "PXL_20250506_153802887.MP.jpg",
+    "PXL_20250506_202558745.MP.jpg",
+    "PXL_20250506_214250050.MP.jpg",
+    "PXL_20250507_151251659.MP.jpg",
+    "PXL_20250507_160800598.MP.jpg",
+    "PXL_20250507_162048757.MP.jpg",
+    "PXL_20250507_162118299.MP.jpg",
+    "PXL_20250507_190049236.MP.jpg"
   ];
 
   const baseUrl = "https://murkot-kot.github.io/appliance-repair/images/";
